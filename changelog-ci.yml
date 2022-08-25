@@ -1,30 +1,29 @@
-﻿changelog_type: "pull_request" # or 'pull_request'
-header_prefix: "Version:"
-commit_changelog: true
-comment_changelog: true
-include_unlabeled_changes: true
-unlabeled_group_title: "Unlabeled Changes"
-group_config:
-  - title: Bug Fixes
-    labels:
-      - kind/bug
-      - kind/bugfix
-  - title: Hotfix
-    labels:
-      - kind/hotfix
-  - title: Code Improvements
-    labels:
-      - kind/improvements
-      - kind/enhancement
-  - title: New Features
-    labels:
-      - kind/feature
-      - kind/refactoring
-  - title: Documentation Updates
-    labels:
-      - kind/docs
-      - kind/documentation
-      - kind/doc
-  - title: Test
-    labels:
-      - kind/test
+﻿name: Changelog CI
+description: Changelog CI is a GitHub Action that generates changelog, then it is committed and/or commented to the release pull request.
+author: Aditya Pathania
+branding:
+  icon: "clock"
+  color: "blue"
+inputs:
+  changelog_filename:
+    description: "Name of the changelog file if not provided defaults to CHANGELOG.md"
+    required: false
+    default: "CHANGELOG.md"
+  config_file:
+    description: "Location of the config JSON file"
+    required: false
+  committer_username:
+    description: "Name of the user who will commit the changes to GitHub"
+    required: false
+    default: "github-actions[bot]"
+  committer_email:
+    description: "Email Address of the user who will commit the changes to GitHub"
+    required: false
+    default: "github-actions[bot]@users.noreply.github.com"
+  release_version:
+    description: "The release version that will be used on the generated Changelog"
+    required: false
+  github_token:
+    description: "GITHUB_TOKEN or Personal Access Token (PAT)"
+    required: false
+    default: ${{ github.token }}
