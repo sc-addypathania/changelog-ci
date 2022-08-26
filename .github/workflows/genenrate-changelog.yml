@@ -4,18 +4,17 @@ name: generate-changelog
 on:
   pull_request:
     types: [opened, reopened]
-    branches: ["main", "main-*"]
 
-jobs:
-  release:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+  jobs:
+    release:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v3
 
-      - name: Build Changelog
-        if: contains(github.event.pull_request.labels.*.name, 'kind/release')
-        uses: saadmk11/changelog-ci@v1.0.0
-        with:
-          config_file: "changelog-config.yml"
-          changelog_filename: CHANGELOG.md
+        - name: Build Changelog
+          if: contains(github.event.pull_request.labels.*.name, 'kind/release')
+          uses: saadmk11/changelog-ci@v1.0.0
+          with:
+            config_file: "changelog-config.yml"
+            changelog_filename: CHANGELOG.md
